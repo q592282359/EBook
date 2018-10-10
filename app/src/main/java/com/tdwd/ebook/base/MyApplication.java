@@ -1,11 +1,10 @@
 package com.tdwd.ebook.base;
 
 import android.app.Application;
-import android.util.Log;
 
-import com.tdwd.ebook.bean.User;
 
-import java.lang.invoke.MutableCallSite;
+import cn.bmob.v3.Bmob;
+import cn.bmob.v3.BmobConfig;
 
 /**
  * @author :Leew
@@ -14,15 +13,14 @@ import java.lang.invoke.MutableCallSite;
  */
 public class MyApplication extends Application {
 
-public User mUser;
-
     private static MyApplication instance;
 
     @Override
     public void onCreate() {
         super.onCreate();
         instance = this;
-        mUser = new User(this);
+
+        Bmob.initialize(this,"8c8be1fdfb6918a6039120b8592df89d");
     }
 
     public static MyApplication getInstance(){

@@ -9,7 +9,6 @@ import com.tdwd.ebook.MainActivity;
 import com.tdwd.ebook.R;
 import com.tdwd.ebook.base.BaseActivity;
 import com.tdwd.ebook.base.MyApplication;
-import com.tdwd.ebook.bean.User;
 
 /**
  * @author :Leew
@@ -39,7 +38,7 @@ public class SplashAactivity extends BaseActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                if (MyApplication.getInstance().mUser.isLogin()) {
+                if (getSharedPreferences("login",MODE_PRIVATE).getBoolean("islogin",false)) {
                     startActivity(new Intent(context, MainActivity.class));
                 } else {
                     startActivity(new Intent(context, LoginActivity.class));

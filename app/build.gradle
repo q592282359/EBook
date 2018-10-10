@@ -20,6 +20,7 @@ android {
         targetCompatibility 1.8
         sourceCompatibility 1.8
     }
+    useLibrary 'org.apache.http.legacy'
 }
 
 dependencies {
@@ -38,4 +39,6 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
     implementation 'com.alibaba:fastjson:1.2.31'
 
+    implementation 'cn.bmob.android:bmob-sdk:3.6.3'
+    implementation 'cn.bmob.android:http-legacy:1.0'
 }

@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.tdwd.ebook.R;
@@ -103,6 +104,8 @@ public class MainFragment extends BaseFragment {
             }
         });
     }
+
+
 
     @Override
     public int getLayoutResID() {

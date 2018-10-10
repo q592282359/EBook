@@ -1,13 +1,26 @@
 package com.tdwd.ebook.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.tdwd.ebook.MainActivity;
 import com.tdwd.ebook.R;
 import com.tdwd.ebook.base.BaseActivity;
+import com.tdwd.ebook.bean.User;
 import com.xw.repo.XEditText;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.LogInListener;
+import cn.bmob.v3.listener.SaveListener;
 
 /**
  * @author :Leew
@@ -15,10 +28,20 @@ import com.xw.repo.XEditText;
  * Description:
  */
 public class LoginActivity extends BaseActivity {
-    private TextView login;
-    private XEditText username;
-    private XEditText password;
 
+
+    @BindView(R.id.et_username)
+    XEditText mEtUsername;
+    @BindView(R.id.et_passWord)
+    XEditText mEtPassWord;
+    @BindView(R.id.btn_register)
+    TextView mBtnRegister;
+    @BindView(R.id.btn_login)
+    TextView mBtnLogin;
+    @BindView(R.id.btn_forget_password)
+    TextView mBtnForgetPassword;
+    @BindView(R.id.ll)
+    LinearLayout mLl;
 
     @Override
     public int getContentViewId() {
@@ -27,16 +50,27 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected void initViews() {
-        login = findViewById(R.id.btn_login);
-        username = findViewById(R.id.et_username);
-        password = findViewById(R.id.et_passWord);
-
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(context, MainActivity.class));
-                finish();
-            }
+        mBtnRegister.setOnClickListener(v -> {
+        });
+        mBtnLogin.setOnClickListener(v -> {
+            BmobUser.loginByAccount(mEtUsername.getText().toString(), mEtPassWord.getText().toString(), new LogInListener<User>() {
+                @Override
+                public void done(User user, BmobException e) {
+                    if (e == null) {
+                        SharedPreferences sp = getSharedPreferences("login", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sp.edit();
+                        editor.putBoolean("islogin", true);
+                        editor.commit();
+                        startActivity(new Intent(context, MainActivity.class));
+                        finish();
+                    } else {
+                        Toast.makeText(LoginActivity.this, "登录失败", Toast.LENGTH_SHORT).show();
+                        Log.e("liwei", "done: " + e.toString());
+                    }
+                }
+            });
         });
     }
+
+
 }

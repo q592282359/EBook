@@ -4,46 +4,32 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import cn.bmob.v3.BmobUser;
+
 /**
  * @author :Leew
  * @date ：2018/9/30 on 9:29
  * Description:
  */
-public class User {
-    private Application application;
-    private SharedPreferences sharedPre;
-    private SharedPreferences.Editor editor;
+public class User extends BmobUser {
 
-    public User(Application application) {
-        this.application = application;
-        sharedPre = application.getSharedPreferences("User", Context.MODE_PRIVATE);
-        editor = sharedPre.edit();
+    private int sex;
+
+    private String age;
+
+    public int getSex() {
+        return sex;
     }
 
-    public void setIsLogin(boolean isLogin) {
-        editor.putBoolean("isLogin", isLogin);
-        editor.commit();
-    }
-    public boolean isLogin() {
-        return sharedPre.getBoolean("isLogin", false);
+    public void setSex(int sex) {
+        this.sex = sex;
     }
 
-    public void setUsername(String username) {
-        editor.putString("username", username);
-        editor.commit();
+    public String getAge() {
+        return age;
     }
 
-    public String getUsername() {
-        return sharedPre.getString("username", "");
-    }
-
-    public String getpassword() {
-        return sharedPre.getString("password", "");
-
-    }
-
-    public void setpassword(String password) {
-        editor.putString("password", password);
-        editor.commit();
+    public void setAge(String age) {
+        this.age = age;
     }
 }
