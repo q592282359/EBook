@@ -60,6 +60,8 @@ public class LoginActivity extends BaseActivity {
                         SharedPreferences sp = getSharedPreferences("login", MODE_PRIVATE);
                         SharedPreferences.Editor editor = sp.edit();
                         editor.putBoolean("islogin", true);
+                        editor.putString("username",mEtUsername.getText().toString());
+                        editor.putString("password",mEtPassWord.getText().toString());
                         editor.commit();
                         startActivity(new Intent(context, MainActivity.class));
                         finish();

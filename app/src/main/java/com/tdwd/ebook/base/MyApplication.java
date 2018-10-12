@@ -1,6 +1,7 @@
 package com.tdwd.ebook.base;
 
 import android.app.Application;
+import android.widget.Toast;
 
 
 import cn.bmob.v3.Bmob;
@@ -14,6 +15,7 @@ import cn.bmob.v3.BmobConfig;
 public class MyApplication extends Application {
 
     private static MyApplication instance;
+    public Toast toast = null;
 
     @Override
     public void onCreate() {

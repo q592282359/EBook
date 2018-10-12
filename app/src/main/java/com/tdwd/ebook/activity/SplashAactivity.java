@@ -4,11 +4,19 @@ import android.content.Intent;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.tdwd.ebook.MainActivity;
 import com.tdwd.ebook.R;
 import com.tdwd.ebook.base.BaseActivity;
 import com.tdwd.ebook.base.MyApplication;
+import com.tdwd.ebook.bean.User;
+import com.tdwd.ebook.util.SharePreferencesUtils;
+import com.tdwd.ebook.util.ToastUtils;
+
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.LogInListener;
 
 /**
  * @author :Leew
@@ -38,8 +46,18 @@ public class SplashAactivity extends BaseActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                if (getSharedPreferences("login",MODE_PRIVATE).getBoolean("islogin",false)) {
-                    startActivity(new Intent(context, MainActivity.class));
+                if (SharePreferencesUtils.getIsLogin()) {
+                    BmobUser.loginByAccount(SharePreferencesUtils.getUserName(), SharePreferencesUtils.getPassWord(), new LogInListener<User>() {
+                        @Override
+                        public void done(User user, BmobException e) {
+                            if (e == null) {
+                                startActivity(new Intent(context, MainActivity.class));
+                            } else {
+                                ToastUtils.showToast("自动登录失败!");
+                            }
+                        }
+                    });
+
                 } else {
                     startActivity(new Intent(context, LoginActivity.class));
                 }

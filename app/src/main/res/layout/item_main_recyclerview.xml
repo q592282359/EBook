@@ -5,13 +5,13 @@
     android:orientation="vertical"
     android:padding="10dp">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/main_ll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
         <ImageView
+            android:id="@+id/book_pic"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
@@ -19,76 +19,100 @@
             android:src="@mipmap/ic_launcher_round" />
 
         <TextView
+            android:id="@+id/book_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/book_pic"
             android:text="《傲慢与偏见》"
             android:textColor="#333333" />
 
         <TextView
+            android:id="@+id/book_author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="5dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="200dp"
             android:text="作者：李木子"
             android:textColor="#999999" />
 
         <TextView
-            android:id="@+id/main_tv_jie"
+            android:id="@+id/book_status"
             android:layout_width="wrap_content"
-            android:text="借"
-            android:layout_gravity="center"
-            android:layout_marginLeft="50dp"
-            android:textColor="@color/theme"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:padding="10dp"
-            android:layout_height="wrap_content" />
+            android:text="未租借"
+            android:textColor="@color/theme" />
 
-    </LinearLayout>
+    </RelativeLayout>
+
     <LinearLayout
         android:id="@+id/main_show_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:visibility="gone">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:text="10书币"
-            android:textColor="#ff0000" />
-
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="上传者:" />
+            android:layout_weight="1"
+            android:orientation="vertical">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/book_money"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="李木子" />
+                android:layout_marginTop="10dp"
+                android:gravity="right"
+                android:text="10书币"
+                android:textColor="#ff0000" />
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="2018/10/10" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/book_fromuser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="上传者:李木子" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/book_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2018/10/10" />
+            </LinearLayout>
         </LinearLayout>
 
-
+        <TextView
+            android:id="@+id/book_zu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="租"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:background="@drawable/book_zu_back"
+            android:textSize="16sp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textColor="#ff0000" />
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"

@@ -4,7 +4,10 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.tdwd.ebook.util.BmobFileUtils;
+
 import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.datatype.BmobFile;
 
 /**
  * @author :Leew
@@ -15,7 +18,27 @@ public class User extends BmobUser {
 
     private int sex;
 
+    private String nickname;
+
     private String age;
+
+    private BmobFile head;
+
+    public BmobFile getHead() {
+        return head;
+    }
+
+    public void setHead(BmobFile head) {
+        this.head = head;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
 
     public int getSex() {
         return sex;

@@ -15,7 +15,10 @@ import com.tdwd.ebook.adapter.HotCityAdapter;
 import com.tdwd.ebook.adapter.PlaceAdapter;
 import com.tdwd.ebook.base.BaseActivity;
 import com.tdwd.ebook.bean.PlaceBean;
+import com.tdwd.ebook.fragment.MainFragment;
 import com.tdwd.ebook.util.StringUtils;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,6 +68,10 @@ public class PlaceActivity extends BaseActivity {
         mHotCity.setOnItemClickListener((parent, view, position, id) -> {
             city = hotdatas.get(position);
             mNowCity.setText(city);
+            MainFragment.PlaceToEvent event = new MainFragment.PlaceToEvent(city);
+            event.setType("placerefresh");
+            EventBus.getDefault().post(event);
+            finish();
         });
         placedatas = StringUtils.getPlace();
         placeAdapter = new PlaceAdapter(placedatas, context);
@@ -77,6 +84,10 @@ public class PlaceActivity extends BaseActivity {
         mExpandlistview.setOnChildClickListener((parent, v, groupPosition, childPosition, id) -> {
             city = placedatas.get(groupPosition).getCityList().get(childPosition);
             mNowCity.setText(city);
+            MainFragment.PlaceToEvent event = new MainFragment.PlaceToEvent(city);
+            event.setType("placerefresh");
+            EventBus.getDefault().post(event);
+            finish();
             return true;
         });
     }
